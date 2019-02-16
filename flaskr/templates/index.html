@@ -1,36 +1,73 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Twitter friends map</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
     <style>
-        form{
-            text-align: center;
+        @import url('https://fonts.googleapis.com/css?family=Raleway');
+            html,h1,h2,h3,h4,h5,h6,a{
+                font-family: "Raleway";
+               }
+               hr.fields {
+                height: 6px;
+                background: url(http://ibrahimjabbari.com/english/images/hr-11.png) repeat-x 0 0;
+                border: 0;
+            }
+        .submit_btn{
+            background: #F97300;
         }
+        .user-form{
+            margin: 6em 0;
+            position: relative;  
+           }
+           .user-form h1{
+            padding:2em 1px;
+            color: #F97300; 
+           }
+           .user-form .right{
+            max-width: 600px;
+           }
+           .user-form .right .btn-secondary{
+            background:  #F97300;
+            color: #fff;
+            border:0;
+           }
+           .user-form .right .form-control::placeholder{
+            color: #888;
+            font-size: 16px;
+           }
     </style>
 </head>
+
 <body>
-    <form action="{{ url_for('handle_user') }}" method="POST">
+    <div class="user-form">
         <div class="container">
-            <h2>Type twitter username to see location of this user friends.</h2>
-            <hr>
-            
-            {%if error == 'no_friends'%}
-            <h1 style="color:red">This user has no friends!!!</h1>
-            {%endif%}
-            {%if error=='invalid_user_name'%}
-            <h1 style="color:red">Invalid username!!!</h1>
-            {%endif%}
-            <label for="username"><b>Username</b></label>
-            <input type="text" placeholder="Enter username", name="username"  required>
-            <hr>
-            <label for="limit"><b>You can limit number of friends to show to speed up execution, otherwise leave blank</b></label>
-            <input type="text" placeholder="Enter limit if necessary", name="limit"  >
-            <hr>
-            <button type="submit" value="Submit" class="submit_btn">Submit</button>
+            <form action="{{ url_for('handle_user') }}" method="POST">
+                <h2 align="center">Type twitter username to see location of this user friends.</h2>
+                <hr>
+                {%if error == 'no_friends'%}
+                <h1 style="color:red"  align="center">This user has no friends!!!</h1>
+                {%endif%}
+                {%if error=='invalid_user_name'%}
+                <h1 style="color:red"  align="center">Invalid username!!!</h1>
+                {%endif%}
+                <label for="username"><b>Username</b></label>
+                <input type="text" placeholder="Enter username" , name="username" , class="form-control form-control-lg"
+                    required>
+                <hr class="fields">
+                <label for="limit"><b>You can limit number of friends to show to speed up execution, otherwise leave
+                        blank</b></label>
+                <input type="text" placeholder="Enter limit if necessary" , name="limit" , class="form-control form-control-lg">
+                <hr class="fields">
+                <button type="submit" value="Submit"  class="btn btn-outline-info btn-block">Submit</button>
         </div>
+    </div>
     </form>
 </body>
+
 </html>
