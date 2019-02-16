@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Twitter friends map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        form{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form action="{{ url_for('handle_user') }}" method="POST">
+        <div class="container">
+            <h2>Type twitter username to see location of this user friends.</h2>
+            <hr>
+            
+            {%if error == 'no_friends'%}
+            <h1 style="color:red">This user has no friends!!!</h1>
+            {%endif%}
+            {%if error=='invalid_user_name'%}
+            <h1 style="color:red">Invalid username!!!</h1>
+            {%endif%}
+            <label for="username"><b>Username</b></label>
+            <input type="text" placeholder="Enter username", name="username"  required>
+            <hr>
+            <label for="limit"><b>You can limit number of friends to show to speed up execution, otherwise leave blank</b></label>
+            <input type="text" placeholder="Enter limit if necessary", name="limit"  >
+            <hr>
+            <button type="submit" value="Submit" class="submit_btn">Submit</button>
+        </div>
+    </form>
+</body>
+</html>
